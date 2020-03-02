@@ -532,19 +532,19 @@ export default class SceneEntryManager {
     this.avatarRig.emit("entered");
   };
 
-  _runBot = async () => {
-    //const audioEl = document.createElement("audio");
+  _runBot = async mediaStream => {
+    const audioEl = document.createElement("audio");
     let audioInput;
     let dataInput;
 
     // Wait for startup to render form
     do {
-      //audioInput = document.querySelector("#bot-audio-input");
+      audioInput = document.querySelector("#bot-audio-input");
       dataInput = document.querySelector("#bot-data-input");
       await nextTick();
     } while (!audioInput || !dataInput);
 
-    /*const getAudio = () => {
+    const getAudio = () => {
       audioEl.loop = true;
       audioEl.muted = true;
       audioEl.crossorigin = "anonymous";
@@ -556,7 +556,7 @@ export default class SceneEntryManager {
       getAudio();
     } else {
       audioInput.onchange = getAudio;
-    }*/
+    }
 
     const camera = document.querySelector("#avatar-pov-node");
     const leftController = document.querySelector("#player-left-controller");
@@ -588,7 +588,6 @@ export default class SceneEntryManager {
       dataInput.onchange = getRecording;
     }
 
-    /*
     await new Promise(resolve => audioEl.addEventListener("canplay", resolve));
     mediaStream.addTrack(
       audioEl.captureStream
@@ -598,6 +597,6 @@ export default class SceneEntryManager {
           : null
     );
     await NAF.connection.adapter.setLocalMediaStream(mediaStream);
-    audioEl.play();*/
+    audioEl.play();
   };
 }
