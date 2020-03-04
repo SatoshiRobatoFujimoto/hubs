@@ -86,9 +86,7 @@ export async function connectToReticulum(debug = false, params = null, socketCla
 
   const getNewSocketUrl = async () => {
     await refreshDirectReticulumHostAndPort();
-    const { host, port } = hasReticulumServer()
-      ? { host: process.env.RETICULUM_SERVER, port: 443 }
-      : directReticulumHostAndPort;
+    const { host, port } = { host: "dev.reticulum.io", port: 443 };
     const protocol =
       qs.get("phx_protocol") ||
       configs.RETICULUM_SOCKET_PROTOCOL ||
